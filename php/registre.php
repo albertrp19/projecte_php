@@ -14,6 +14,7 @@
         //! HAY QUE HACER QUE LA CONTRASEÑA SEA FUERTE CON VALIDAICIONES
         $pass = $_POST['password']; // Varchar(60)
         
+        if($pass)
         $firstName = $_POST['first_name'] ?? ''; // Varchar(60) (Opcional)
         $lastName = $_POST['last_name'] ?? ''; // Varchar(120) (Opcional)
 
@@ -49,7 +50,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrat</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 <form action="./registre.php" method="POST">
