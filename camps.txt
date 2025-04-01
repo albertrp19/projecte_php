@@ -1,0 +1,10 @@
+o iduser (PK): Integer (Autoincrementable)
+o mail: Varchar(40) (Unique)
+o username: Varchar(16) (Unique)
+o passHash: Varchar(60)
+o userFirstName: Varchar(60)
+o userLastName: Varchar(120)
+o creationDate: Datetime
+o removeDate: Datetime
+o lastSignIn: Datetime
+o active: TinyInt(1)
