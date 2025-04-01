@@ -1,0 +1,92 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb; /* Soft light background */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    background-color: #004a7c; /* Dark blue */
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+/* Form styling */
+form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form input,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input:focus {
+    border-color: #006bb3; /* Blue focus color */
+    outline: none;
+}
+
+form button {
+    background-color: #004a7c; /* Blue button */
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+form button:hover {
+    background-color: #00355b; /* Darker blue on hover */
+}
+
+/* Alert box for messages */
+.alert {
+    background-color: #4caf50; /* Green for success */
+    color: white;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alert.error {
+    background-color: #f44336; /* Red for errors */
+}
+
+/* Footer styling */
+footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #004a7c;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
