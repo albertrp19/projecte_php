@@ -1,9 +1,9 @@
 <?php
-    require_once('./php/functions.php');
+    require_once('./functions.php');
     session_start();
     
     if(checkSession()){
-        header('Location: ./php/home.php');
+        header('Location: ./home.php');
     }
   
     if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
@@ -30,38 +30,11 @@
             //!Si lo encuentra, entra al home
             //! Actualiza el ultimo login, la funcion necesita pasar la variable DB por parametro porque no es global
             updateLastSignIn($_POST['user'], $db);
-            header('Location: ./php/home.php');
+            header('Location: ./home.php');
         }
         else{
-            //!Si no, que avise del fallo sin especificar
-            //header('Location ./html/registre.html');
+            //!Si no, que avise del fallo sin especificar 
             echo "No es possible iniciar sessió amb les dades";
         }
         }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inici de sessio</title>
-    <link rel="stylesheet" href="./css/style.css">
-
-</head>
-<body>
-    
-    <form action="./index.php" method="post">
-        <label for="user">Usuari o correu</label>
-        <input type="text" name="user">
-
-        <label for="passwd"> Contrasenya</label>
-        <input type="password" name="passwd">
-
-        <input type="submit" value="Enviar">
-    </form>
-    <a href="./php/registre.php">No tens compte? Registrar-se</a>
-
-    <a href="">Has oblidat la teva contrasenya?</a>
-</body>
-</html>

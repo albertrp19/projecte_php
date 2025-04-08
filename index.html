@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inici de sessio</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* Estils per al Pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .popup input[type="text"],
+        .popup input[type="submit"] {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form action="./php/index.php" method="post">
+        <label for="user">Usuari o correu</label>
+        <input type="text" name="user">
+
+        <label for="passwd"> Contrasenya</label>
+        <input type="password" name="passwd">
+
+        <input type="submit" value="Enviar">
+    </form>
+    <a href="./html/registre.html">No tens compte? Registrar-se</a>
+    <br>
+    <a href="#" id="forgot-password">Forgot Password?</a>
+
+    <!-- Pop-up per al reset de contrasenya -->
+    <div class="popup-overlay" id="popup-overlay"></div>
+    <div class="popup" id="popup">
+        <h3>Reset Password</h3>
+        <form action="./php/resetPasswordSend.php" method="post">
+            <label for="mail">Correu electrònic</label>
+            <input type="text" name="mail" required>
+            <input type="submit" value="Send Reset Password Email">
+        </form>
+        <button id="close-popup">Close</button>
+    </div>
+
+    <script>
+        // JavaScript per mostrar i amagar el Pop-up
+        const forgotPasswordLink = document.getElementById("forgot-password");
+        const popup = document.getElementById("popup");
+        const popupOverlay = document.getElementById("popup-overlay");
+        const closePopupButton = document.getElementById("close-popup");
+
+        forgotPasswordLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            popup.style.display = "block";
+            popupOverlay.style.display = "block";
+        });
+
+        closePopupButton.addEventListener("click", () => {
+            popup.style.display = "none";
+            popupOverlay.style.display = "none";
+        });
+
+        popupOverlay.addEventListener("click", () => {
+            popup.style.display = "none";
+            popupOverlay.style.display = "none";
+        });
+        
+        const params = new URLSearchParams(window.location.search);
+        const msg = document.getElementById("missatge");
+
+        if (params.get("verificat") === "ok") {
+            msg.innerHTML = '<div class="alerta ok">✅ Compte verificat correctament!</div>';
+        } else if (params.get("verificat") === "ko") {
+            msg.innerHTML = '<div class="alerta ko">❌ Error en verificar el compte.</div>';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrat</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<form action="../php/registre.php" method="POST">
+        <label for="username">Username (Obligatorio):</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email (Obligatorio):</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="first_name">First Name (Opcional):</label><br>
+        <input type="text" id="first_name" name="first_name"><br><br>
+
+        <label for="last_name">Last Name (Opcional):</label><br>
+        <input type="text" id="last_name" name="last_name"><br><br>
+
+        <label for="password">Password (Obligatorio):</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="verify_password">Verify Password (Obligatorio):</label><br>
+        <input type="password" id="verify_password" name="verify_password" required><br><br>
+
+        <button type="submit">Registrar</button>
+    </form>
+    <a href="../index.html">Tens un compte? Inicia sessió</a>
+</body>
+</html>

@@ -3,7 +3,7 @@ require_once('./functions.php');
 session_start();
 
 if(!checkSession()){
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 ?>
@@ -19,9 +19,9 @@ if(!checkSession()){
     <style>
         body {
             background-image: url('../img/logo.png');
-            background-size: cover; /* Ajusta el tamaño */
-            background-position: center; /* Centra la imagen */
-            background-repeat: no-repeat; /* Evita que se repita */
+            background-repeat: no-repeat;
+            height: 100vh;
+            background-position: center center;
         }
     </style>
 </head>
