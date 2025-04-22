@@ -60,11 +60,21 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     }
 }
 ?>
-
-<!-- Formulari de reset -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    
 <form method="POST">
     <h2>Introdueix la nova contrasenya</h2>
     <input type="password" name="password" placeholder="Nova contrasenya" required><br>
     <input type="password" name="verify_password" placeholder="Repeteix contrasenya" required><br>
     <button type="submit">Actualitza contrasenya</button>
 </form>
+</body>
+</html>
