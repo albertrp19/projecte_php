@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['mail'], $_GET['token'])
         setSession($result);
 
         // Redirigir a home.php
-        header('Location: ./home.php');
+        header('Location: ../html/home.php');
         exit();
     } else {
         header('Location: ../index.html?verificat=error');

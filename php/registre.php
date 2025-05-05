@@ -2,7 +2,7 @@
     require_once('./functions.php');
     session_start();
     if(checkSession()){
-        header('Location: ./home.php');
+        header('Location: ../html/home.php');
     }
 
     $user_mail_exisit = FALSE;

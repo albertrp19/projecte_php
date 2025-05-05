@@ -140,7 +140,84 @@
     }   //$filenames = $attatchment["name"];
         $att_dir = "archivos/";
         
-     
+    function getProfileInfo($user, $db){
+        
+        $sql = 'SELECT * FROM users WHERE username = ?';
+        $select = $db->prepare($sql);
+        $select->execute(array($user));
+        return $select->fetch(PDO::FETCH_ASSOC);
+    }
 
-
+    function buildUserInfoHtml($infoUser) {
+        $html = '';
+    
+        $fields = [
+            'profileImage'  => $infoUser['profile_image_path'],
+            'Username'      => $infoUser['username'],
+            'Email'         => $infoUser['mail'],
+            'First Name'    => $infoUser['first_name'] ?? null,
+            'Last Name'     => $infoUser['last_name'] ?? null,
+            'Phone Number'  => $infoUser['phone'] ?? null,
+            'Location'      => $infoUser['location'] ?? null,
+            'Birthdate'     => $infoUser['birthdate'] ?? null,
+            'Description'   => $infoUser['description'] ?? null,
+        ];
+    
+        foreach ($fields as $label => $value) {
+            if (!empty($value)) {
+                if ($label === 'profileImage') {
+                    $safePath = htmlspecialchars($value);
+                    $html .= "<img src=\"..{$safePath}\" alt=\"Profile image\" width=\"200px\" height=\"200px\">\n";
+                } else {
+                    $safeValue = htmlspecialchars($value);
+                    $html .= "<p>{$label}: {$safeValue}</p>\n";
+                }
+            }
+        }
+    
+        return $html;
+    }
+    function generateForm(array $userData = [])
+    {
+        $fields = [
+            'first_name'   => 'First Name',
+            'last_name'    => 'Last Name',
+            'phone_number' => 'Phone Number',
+            'location'     => 'Location',
+            'birthdate'    => 'Birthdate',
+            'description'  => 'Description',
+            'profile_image'=> 'Profile Image'
+        ];
+    
+        echo '<form action="../html/updateProfile.php" method="POST" enctype="multipart/form-data">';
+    
+        foreach ($fields as $field => $label) {
+            echo "<label for=\"$field\">$label</label><br>";
+    
+            $value = isset($userData[$field]) ? htmlspecialchars($userData[$field], ENT_QUOTES, 'UTF-8') : '';
+    
+            if ($field === 'description') {
+                echo "<textarea id=\"$field\" name=\"$field\" rows=\"4\" cols=\"50\" value=\"$value\"></textarea><br><br>";
+    
+            } elseif ($field === 'profile_image') {
+                if (!empty($value)) {
+                    echo "<div style=\"margin-bottom:8px;\">
+                            <strong>Imagen actual:</strong><br>
+                            <img src=\"$value\" alt=\"Profile Image\" style=\"max-width:150px;\">
+                          </div>";
+                }
+                echo "<input type=\"file\" id=\"$field\" name=\"$field\" accept=\"image/*\"><br><br>";
+    
+            } elseif ($field === 'birthdate') {
+                echo "<input type=\"date\" id=\"$field\" name=\"$field\" value=\"$value\"><br><br>";
+    
+            } else {
+                echo "<input type=\"text\" id=\"$field\" name=\"$field\" value=\"$value\"><br><br>";
+            }
+        }
+    
+        echo '<button type="submit">Guardar cambios</button>';
+        echo '</form>';
+    }
+    
 ?>

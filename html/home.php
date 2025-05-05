@@ -1,5 +1,5 @@
 <?php
-require_once('./functions.php');
+require_once('../php/functions.php');
 session_start();
 
 if(!checkSession()){
@@ -30,7 +30,7 @@ if(!checkSession()){
 <h1>Benvingut <?php echo $_SESSION['user'] ?>!!</h1>
 
 
-
+<a href="./profile.php">Perfil</a>
 <form action="./logout.php">
     <input type="submit" value="Tancar Sessio">
 </form>

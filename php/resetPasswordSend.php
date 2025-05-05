@@ -3,7 +3,7 @@ require_once('./functions.php');
 session_start();
 
 if (checkSession()) {
-    header('Location: ./home.php');
+    header('Location: ../html/home.php');
     exit();
 }
 

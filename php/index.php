@@ -3,7 +3,7 @@
     session_start();
     
     if(checkSession()){
-        header('Location: ./home.php');
+        header('Location: ../html/home.php');
     }
   
     if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
@@ -30,7 +30,7 @@
             //!Si lo encuentra, entra al home
             //! Actualiza el ultimo login, la funcion necesita pasar la variable DB por parametro porque no es global
             updateLastSignIn($_POST['user'], $db);
-            header('Location: ./home.php');
+            header('Location: ../html/home.php');
         }
         else{
             //!Si no, que avise del fallo sin especificar 
