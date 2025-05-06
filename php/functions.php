@@ -190,8 +190,51 @@
         $stmt->execute($params);
     }
     
+    function addPost($content, $user, $file, $db) {
 
+        if (!empty($file['tmp_name'])) {
+            $uploadDir = '/img/uploads/posts/';
+            $fileName = basename($file['name']);
+            $uploadPath = $uploadDir . uniqid() . '_' . $fileName;
+            move_uploaded_file($file['tmp_name'], __DIR__ . '/..' . $uploadPath);
     
+            
+        }
+        else{
+
+            $uploadPath = NULL;
+
+        }
+        $sql = 'INSERT INTO posts (content, user_id, image_path) VALUES (?, ?, ?)';
+    
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$content, $user, $uploadPath]);
+        
+    }
+
+    function showPosts($db) {
+        $sql = 'SELECT * FROM posts ORDER BY creationDate DESC';
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $html = '';
+
+        foreach ($posts as $post) {
+            $postId = htmlspecialchars($post['id_post'], ENT_QUOTES, 'UTF-8');
+            $content = nl2br(htmlspecialchars($post['content'], ENT_QUOTES, 'UTF-8'));
+            $imagePath = htmlspecialchars($post['image_path'], ENT_QUOTES, 'UTF-8');
+            $createdAt = htmlspecialchars($post['creationDate'], ENT_QUOTES, 'UTF-8');
+    
+            $html .= "<div class=\"post\" id=\"post-$postId\">";
+            $html .= "<p>$content</p>";
+            if (!empty($imagePath)) {
+                $html .= "<img src=\"..$imagePath\" alt=\"Post image\" style=\"max-width: 100%; height: auto;\">";
+            }
+            $html .= "<p>Publicat el: $createdAt</p>";
+            $html .= "</div>";
+        }
+        return $html;
+    }
     # Funcio per agafar tota la info de l'usuari per mostrar-la al perfil
     function buildUserInfoHtml($infoUser) {
         $html = '';

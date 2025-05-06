@@ -12,6 +12,11 @@ body {
     color: #333;
     line-height: 1.6;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
 /* Header styling */
@@ -20,19 +25,27 @@ header {
     color: white;
     padding: 15px 0;
     text-align: center;
+    width: 100%;
 }
 
 header h1 {
     font-size: 2em;
 }
 
-/* Form styling */
-form {
-    background-color: white;
+/* Centering form and other content */
+.container {
+    width: 100%;
+    max-width: 800px; /* Set max width for container */
+    margin: 0 auto; /* Center container */
     padding: 20px;
-    margin: 20px 0;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+form {
+    padding: 20px;
 }
 
 form input,
@@ -80,6 +93,7 @@ footer {
     text-align: center;
     padding: 10px;
     margin-top: 40px;
+    width: 100%;
 }
 
 footer a {
@@ -91,3 +105,25 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Styling for divs to separate sections */
+div {
+    margin-bottom: 20px; /* Space between divs */
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for anchors (links) */
+a {
+    color: #004a7c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 2px solid #004a7c;
+}

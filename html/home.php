@@ -6,6 +6,9 @@ if(!checkSession()){
     header('Location: ../index.html');
 }
 
+$posts = showPosts($db);
+
+
 ?>
 
 
@@ -33,12 +36,15 @@ if(!checkSession()){
 
 <a href="./profile.php">Perfil</a>
 
-a
+<a href="./addPost.html">Afegir Post</a>
+
 
 <form action="./logout.php">
     <input type="submit" value="Tancar Sessio">
 </form>
 
+
+<?php echo $posts;?>
     
 </body>
 </html>
