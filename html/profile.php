@@ -23,9 +23,10 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-
+    <a href="./home.php">Atras</a>
+    <br>
     <?php echo $htmlInfo; ?>
-
+    <br>
     <a href="./updateProfile.php">Edita el teu perfil</a>
     
 </body>

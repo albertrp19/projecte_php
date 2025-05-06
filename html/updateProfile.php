@@ -5,10 +5,14 @@ session_start();
 if(!checkSession()){
     header('Location: ../index.html');
 }
-$infoUser = getProfileInfo($_SESSION['user'], $db);
+$htmlForm = generateForm(getProfileInfo($_SESSION['user'], $db));
 
-generateForm($infoUser);
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    updateProfile($_POST, $_FILES, $db);
 
+    header('Location: ../html/profile.php');
+    
+}
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +23,7 @@ generateForm($infoUser);
     <title>Actualitza el teu perfil</title>
 </head>
 <body>
-
+    <?php echo $htmlForm; ?>
 
 </body>
 </html>

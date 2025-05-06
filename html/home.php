@@ -30,7 +30,11 @@ if(!checkSession()){
 <h1>Benvingut <?php echo $_SESSION['user'] ?>!!</h1>
 
 
+
 <a href="./profile.php">Perfil</a>
+
+a
+
 <form action="./logout.php">
     <input type="submit" value="Tancar Sessio">
 </form>
