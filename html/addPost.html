@@ -5,20 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Afegir Post</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Opcional: centrar el formulario y ajustar el fondo si quieres */
+        body {
+            background-image: url('../img/logo.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+        .container-add-post {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(78,84,200,0.10);
+            padding: 32px 36px 24px 36px;
+            margin: 40px auto 0 auto;
+            max-width: 500px;
+            text-align: center;
+        }
+        .container-add-post h1 {
+            margin-bottom: 18px;
+        }
+        .container-add-post label {
+            font-weight: 500;
+            color: #4e54c8;
+        }
+        .container-add-post textarea,
+        .container-add-post input[type="file"] {
+            margin-bottom: 18px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container-add-post">
+        <a href="home.php" class="btn-linkup" style="float:left; margin-bottom: 18px;">&larr; Tornar</a>
+        <h1>Afegir nou post</h1>
+        <form action="../php/addPost.php" method="post" enctype="multipart/form-data">
+            <label for="content">Contingut:</label><br>
+            <textarea id="content" name="content" rows="5" cols="30" required></textarea>
+            <br><br>
 
-    <h1>Afegir nou post</h1>
-    <form action="../php/addPost.php" method="post" enctype="multipart/form-data">
-        <label for="content">Contingut:</label>
-        <textarea id="content" name="content" rows="5" cols="30" required></textarea>
-        <br><br>
+            <label for="image_path">Imatge:</label><br>
+            <input type="file" id="image_path" name="file" accept="image/*">
+            <br><br>
 
-        <label for="image_path">Imatge:</label>
-        <input type="file" id="image_path" name="file" accept="image/*">
-        <br><br>
-
-        <button type="submit">Afegir Post</button>
-    </form>
+            <button type="submit" class="btn-linkup">Afegir Post</button>
+        </form>
+    </div>
 </body>
 </html>

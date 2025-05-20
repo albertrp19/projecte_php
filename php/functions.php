@@ -254,34 +254,29 @@ foreach ($posts as $post) {
 
      
             $html .= "<div class=\"post\" id=\"post-$postId\">";
-            $html .= "<p>$autorName</p>";
-            $html .= "<p>$content</p>";
+            $html .= "<div class=\"post-author\">$autorName</div>";
+            $html .= "<div class=\"post-date\">Publicat el: $createdAt</div>";
+            $html .= "<div class=\"post-content\">$content</div>";
             if (!empty($imagePath)) {
-                $html .= "<img src=\"..$imagePath\" alt=\"Post image\" style=\"max-width: 100%; height: auto;\">";
+                $html .= "<img src=\"..$imagePath\" alt=\"Post image\">";
             }
-            
-            $html .= "<p>Publicat el: $createdAt</p>";
-            $html .= "<p>Likes: $likesCount</p>";
-
+            $html .= "<div class=\"likes\">Likes: $likesCount</div>";
             // Botón de "like"
             $html .= "<form method=\"POST\" action=\"../php/likePost.php\">";
             $html .= "<input type=\"hidden\" name=\"post_id\" value=\"$postId\">";
-            $html .= "<button type=\"submit\">Like</button>";
+            $html .= "<input type=\"submit\" value=\"Like\" class=\"btn-linkup\">";
             $html .= "</form>";
-
             // Formulario para agregar comentarios
             $html .= "<form method=\"POST\" action=\"../php/addComment.php\">";
             $html .= "<input type=\"hidden\" name=\"post_id\" value=\"$postId\">";
             $html .= "<textarea name=\"content\" placeholder=\"Escribe un comentario...\" required></textarea>";
-            $html .= "<button type=\"submit\">Comentar</button>";
+            $html .= "<input type=\"submit\" value=\"Comentar\" class=\"btn-linkup\">";
             $html .= "</form>";
-
             // Mostrar comentarios
             $sqlComments = 'SELECT * FROM comments WHERE post_id = ? ORDER BY creationDate ASC';
             $stmtComments = $db->prepare($sqlComments);
             $stmtComments->execute([$postId]);
             $comments = $stmtComments->fetchAll(PDO::FETCH_ASSOC);
-
             $html .= "<div class=\"comments\">";
             foreach ($comments as $comment) {
                 $commentContent = nl2br(htmlspecialchars($comment['content'], ENT_QUOTES, 'UTF-8'));
@@ -302,7 +297,7 @@ foreach ($posts as $post) {
     }
     # Funcio per agafar tota la info de l'usuari per mostrar-la al perfil
     function buildUserInfoHtml($infoUser) {
-        $html = '';
+        $html = '<div class="profile-card">';
     
         $fields = [
             'profileImage'  => $infoUser['profile_image_path'],
@@ -316,29 +311,35 @@ foreach ($posts as $post) {
             'Descripcio'    => $infoUser['description'] ?? null,
         ];
     
+        $html = '';
+        $html .= '<div class="profile-info-list">';
+        $avatarPrinted = false;
         foreach ($fields as $label => $value) {
             if (!empty($value)) {
                 if ($label === 'profileImage') {
                     $safePath = htmlspecialchars($value);
-                    $html .= "<img src=\"..{$safePath}\" alt=\"Profile image\" width=\"200px\" height=\"200px\">\n";
+                    $html .= "<div class='profile-avatar'><img src='..{$safePath}' alt='Imatge de perfil'></div>";
+                    $avatarPrinted = true;
+                } elseif ($label === 'Username') {
+                    $safeValue = htmlspecialchars($value);
+                    $html .= "<h3 class='profile-username'>@$safeValue</h3>";
                 } elseif ($label === 'Edat') {
                     $age = calculateAge($value);
-                    $html .= "<p>{$label}: {$age} anys</p>\n";
+                    $html .= "<div class='profile-row'><span class='profile-label'>{$label}:</span> <span class='profile-value'>{$age} anys</span></div>";
                 } elseif ($label === 'Descripcio') {
                     $safeValue = nl2br(htmlspecialchars($value));
-                    $html .= "<p>{$label}: {$safeValue}</p>\n";
-                }
-                elseif ($label === 'Ubicacio') {
+                    $html .= "<div class='profile-row'><span class='profile-label'>{$label}:</span> <span class='profile-value'>$safeValue</span></div>";
+                } elseif ($label === 'Ubicacio') {
                     $safeValue = htmlspecialchars($value);
-                    $html .= "<p>{$label}: <a href=\"https://www.google.com/maps/search/?api=1&query={$safeValue}\" target=\"_blank\">{$safeValue}</a></p>\n";
+                    $html .= "<div class='profile-row'><span class='profile-label'>{$label}:</span> <span class='profile-value'><a href='https://www.google.com/maps/search/?api=1&query={$safeValue}' target='_blank'>{$safeValue}</a></span></div>";
                     $html .= generateGoogleMapEmbed($safeValue);
-                }
-                else {
+                } else {
                     $safeValue = htmlspecialchars($value);
-                    $html .= "<p>{$label}: {$safeValue}</p>\n";
+                    $html .= "<div class='profile-row'><span class='profile-label'>{$label}:</span> <span class='profile-value'>{$safeValue}</span></div>";
                 }
             }
         }
+        $html .= '</div>';
         return $html;
     }
     # Funcio per calcular l'edat a partir de la data de naixement
