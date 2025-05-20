@@ -1,5 +1,4 @@
 <?php
-    
     require_once('../php/functions.php');
     session_start();
     if(!checkSession()){
@@ -7,18 +6,12 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-       
+        //print_r($_FILES);
         $content = $_POST['content'];
         $infoUser = getProfileInfo($_SESSION['user'], $db);
         $userId = $infoUser['iduser'];
-        if(isset($_POST['file'])){
-            $file = $_POST['file'];
-        }
-        else{
-            $file = null;
-        }
-        addPost($content, $userId, $file, $db);
-
+       
+        addPost($content, $userId, $_FILES, $db);
         
         header('Location: ../html/home.php');
     }else{

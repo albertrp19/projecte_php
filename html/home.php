@@ -23,7 +23,6 @@ $posts = showPosts($db);
         body {
             background-image: url('../img/logo.png');
             background-repeat: no-repeat;
-            height: 100vh;
             background-position: center center;
         }
     </style>
@@ -39,7 +38,7 @@ $posts = showPosts($db);
 <a href="./addPost.html">Afegir Post</a>
 
 
-<form action="./logout.php">
+<form action="../php/logout.php">
     <input type="submit" value="Tancar Sessio">
 </form>
 

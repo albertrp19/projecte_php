@@ -1,129 +1,140 @@
-/* Reset some default browser styles */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Body styling */
+/* Asegura que html y body escalen con el contenido */
+html, body {
+  height: auto;
+  overflow-x: hidden;
+}
+
+/* Body en flujo normal */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fb; /* Soft light background */
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: #f9f7f2;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
 }
 
-/* Header styling */
+/* Wrapper centrado */
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 40px; /* espacio para el footer */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header siempre visible arriba */
 header {
-    background-color: #004a7c; /* Dark blue */
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-    width: 100%;
+  background-color: #004a7c;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-header h1 {
-    font-size: 2em;
+/* Estilos de botón dentro de header */
+header button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #006bb3;
+  color: #fff;
+  cursor: pointer;
+}
+header button:hover {
+  background-color: #005499;
 }
 
-/* Centering form and other content */
+/* Contenedor de formulario */
 .container {
-    width: 100%;
-    max-width: 800px; /* Set max width for container */
-    margin: 0 auto; /* Center container */
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-/* Form styling */
-form {
-    padding: 20px;
+/* Contenedor de posts */
+.posts-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  /* ya no text-align: center aquí para no romper bloques de párrafo */
 }
 
+/* Cada post centrado */
+.post {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px; /* centrado horizontal y separación inferior */
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  text-align: left; /* si quieres texto alineado a la izquierda */
+}
+
+/* Si quieres centrar también el texto dentro de .post,
+   cámbialo a text-align: center; */
+
+/* Imágenes de post */
+.post img {
+  display: block;
+  margin: 10px auto; /* centrado de la imagen */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form inputs y botones */
 form input,
 form button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-form input:focus {
-    border-color: #006bb3; /* Blue focus color */
-    outline: none;
+/* Separación entre bloques internos */
+.container > div,
+.posts-container > div {
+  margin-bottom: 20px;
 }
 
-form button {
-    background-color: #004a7c; /* Blue button */
-    color: white;
-    cursor: pointer;
-    border: none;
-}
-
-form button:hover {
-    background-color: #00355b; /* Darker blue on hover */
-}
-
-/* Alert box for messages */
-.alert {
-    background-color: #4caf50; /* Green for success */
-    color: white;
-    padding: 10px;
-    margin: 20px 0;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.alert.error {
-    background-color: #f44336; /* Red for errors */
-}
-
-/* Footer styling */
-footer {
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 10px;
-    margin-top: 40px;
-    width: 100%;
-}
-
-footer a {
-    color: #004a7c;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Styling for divs to separate sections */
-div {
-    margin-bottom: 20px; /* Space between divs */
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Styling for anchors (links) */
+/* Enlaces */
 a {
-    color: #004a7c;
-    text-decoration: none;
+  color: #004a7c;
+  text-decoration: none;
 }
-
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+a:focus {
+  outline: 2px solid #004a7c;
 }
 
-a:focus {
-    outline: 2px solid #004a7c;
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  margin-top: 40px;
+  color: #666;
 }
